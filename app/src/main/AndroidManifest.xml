@@ -4,6 +4,7 @@
     package="com.github.midros.istheapp">
     <!-- location -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <!-- storage -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -92,6 +93,7 @@
         <service
             android:name=".services.accessibilityData.AccessibilityDataService"
             android:label="@string/accessibility_service_label"
+            android:foregroundServiceType="location"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             tools:ignore="InnerclassSeparator">
             <intent-filter>

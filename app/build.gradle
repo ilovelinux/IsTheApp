@@ -2,16 +2,14 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
-apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.github.midros.istheapp"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 30
         versionCode 1
         versionName "2.0.0"
         multiDexEnabled true
@@ -26,34 +24,49 @@ android {
             it.buildConfigField("String", "PACKAGE_CHECK_SOCIAL", PACKAGE_CHECK_SOCIAL)
         }
     }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+        // Sets Java compatibility to Java 8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
     }
 
     sourceSets { main.java.srcDirs += 'src/main/kotlin' }
-    kapt { generateStubs = true }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     //noinspection GradleCompatible
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.multidex:multidex:2.0.1'
 
+    //java 8
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
+
     //android lifecycle
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    kapt 'androidx.lifecycle:lifecycle-compiler:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.3.0'
 
     //Firebase
-    implementation "com.google.firebase:firebase-auth:19.0.0"
-    implementation "com.google.firebase:firebase-database:19.1.0"
-    implementation "com.google.firebase:firebase-storage:19.0.1"
-    implementation "com.google.firebase:firebase-core:17.2.0"
+    implementation 'com.google.firebase:firebase-auth:20.0.2'
+    implementation 'com.google.firebase:firebase-database:19.6.0'
+    implementation 'com.google.firebase:firebase-storage:19.2.1'
+    implementation 'com.google.firebase:firebase-core:18.0.2'
     implementation 'com.firebaseui:firebase-ui:5.1.0'
 
     //play-services
@@ -66,7 +79,7 @@ dependencies {
     implementation 'com.github.jakob-grabner:Circle-Progress-View:v1.3'
 
     //CircleImageView
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //floatinbutton
     implementation 'com.github.clans:fab:1.6.4'
@@ -75,7 +88,7 @@ dependencies {
     implementation 'com.jaredrummler:material-spinner:1.3.1'
 
     //animation
-    implementation 'com.daimajia.androidanimations:library:2.3@aar'
+    implementation 'com.daimajia.androidanimations:library:2.4@aar'
 
     //dialog
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
@@ -85,7 +98,7 @@ dependencies {
 
     //glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -94,34 +107,34 @@ dependencies {
     implementation 'com.pawegio.kandroid:kandroid:0.8.7@aar'
 
     //Android-Ktx
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.core:core-ktx:1.3.2'
 
     //Gson
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     //kotterknife
     implementation 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
 
     //dagger2
-    implementation 'com.google.dagger:dagger:2.16'
-    kapt 'com.google.dagger:dagger-compiler:2.14.1'
+    implementation 'com.google.dagger:dagger:2.32'
+    kapt 'com.google.dagger:dagger-compiler:2.32'
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'
 
     //RxPermissions
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
 
     //RxBinding - Kotlin
-    implementation 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.1.1'
+    implementation 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.2.0'
 
     //RxKotlin2 / RxAndroid
-    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     //root
     implementation 'com.chrisplus.rootmanager:library:2.0.5@aar'
 
     //deviceName
-    implementation 'com.jaredrummler:android-device-names:1.1.9'
+    implementation 'com.jaredrummler:android-device-names:2.0.0'
 
 
 }

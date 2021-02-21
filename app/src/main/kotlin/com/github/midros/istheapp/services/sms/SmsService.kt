@@ -28,7 +28,7 @@ class SmsService : BaseService(), InterfaceServiceSms {
     }
 
     private fun Intent.setSmsIntent() {
-        interactor.setPushSms(getStringExtra(SMS_ADDRESS), getStringExtra(SMS_BODY),getIntExtra(TYPE_SMS,0))
+        interactor.setPushSms(getStringExtra(SMS_ADDRESS)!!, getStringExtra(SMS_BODY)!!,getIntExtra(TYPE_SMS,0))
     }
 
     override fun stopServiceSms() {

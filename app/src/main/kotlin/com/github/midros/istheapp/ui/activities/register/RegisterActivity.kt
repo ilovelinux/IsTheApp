@@ -75,7 +75,7 @@ class RegisterActivity : BaseActivity(R.layout.activity_register), InterfaceView
 
     @SuppressLint("CheckResult")
     private fun login(){
-        getPermissions()!!.requestEachCombined(Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS, Manifest.permission.READ_SMS, Manifest.permission.CAMERA,Manifest.permission.PROCESS_OUTGOING_CALLS)
+        getPermissions()!!.requestEachCombined(Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS, Manifest.permission.READ_SMS, Manifest.permission.CAMERA,Manifest.permission.PROCESS_OUTGOING_CALLS)
                     .subscribe {permission -> subscribePermission(permission,getString(R.string.message_permission),getString(R.string.message_permission_never_ask_again)){
                         interactor.signUpDisposable(edtEmail.text.toString(), edtPass.text.toString())
                     }}

@@ -17,6 +17,7 @@ import com.pawegio.kandroid.longToast
 import java.io.File
 import java.io.ByteArrayOutputStream
 import java.io.FileOutputStream
+import kotlin.jvm.Throws
 
 /**
  * Created by luis rafael on 20/03/18.
@@ -153,7 +154,7 @@ object FileHelper{
     fun getDurationFile(fileName:String) : String{
         val metaRetriever = MediaMetadataRetriever()
         metaRetriever.setDataSource(fileName)
-        val duration = metaRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION).toLong()
+        val duration = metaRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)!!.toLong()
         val seconds = (duration % 60000 / 1000).toString()
         val minutes = (duration / 60000).toString()
         metaRetriever.release()

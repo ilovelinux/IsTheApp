@@ -17,11 +17,11 @@ import com.pawegio.kandroid.e
  */
 class SmsObserver(private val context: Context,handler: Handler) : ContentObserver(handler) {
 
-    override fun onChange(selfChange: Boolean, uri: Uri) {
+    override fun onChange(selfChange: Boolean, uri: Uri?) {
         super.onChange(selfChange, uri)
         var cur : Cursor?=null
         try {
-            cur = context.contentResolver.query(uri,null,null,null,null)
+            cur = context.contentResolver.query(uri!!,null,null,null,null)!!
             cur.moveToFirst()
             val protocol = cur.getString(cur.getColumnIndex(Telephony.Sms.PROTOCOL))
             val address = cur.getString(cur.getColumnIndex(Telephony.Sms.ADDRESS))

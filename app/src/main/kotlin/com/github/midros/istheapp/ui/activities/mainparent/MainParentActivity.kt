@@ -109,7 +109,7 @@ class MainParentActivity : BaseActivity(R.layout.activity_main_parent), Interfac
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         interactorParent.valueAccounts(childSelected=="")
-        setFragmentTag(intent.getStringExtra("TAG"))
+        setFragmentTag(intent.getStringExtra("TAG")!!)
         setDataUser()
         if (finishAppState) interactorParent.startCountDownTimer()
     }

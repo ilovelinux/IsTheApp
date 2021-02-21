@@ -45,7 +45,7 @@ class ViewPhoto : BaseActivity(R.layout.activity_view_photo) {
     private fun setImage() {
         val url = intent.getStringExtra(URL_IMAGE)
         supportPostponeEnterTransition()
-        imgPhoto.setImageUrl(url){ supportStartPostponedEnterTransition() }
+        imgPhoto.setImageUrl(url!!){ supportStartPostponedEnterTransition() }
     }
 
     private fun ImageView.setImageUrl(url:String, onLoadingFinished:()->Unit){
