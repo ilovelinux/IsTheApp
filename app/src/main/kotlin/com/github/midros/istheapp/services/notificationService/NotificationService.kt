@@ -3,6 +3,7 @@ package com.github.midros.istheapp.services.notificationService
 import android.app.Notification
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
+import androidx.core.graphics.drawable.toBitmap
 import com.github.midros.istheapp.app.IsTheApp
 import com.github.midros.istheapp.utils.Consts.FACEBOOK_MESSENGER_PACK_NAME
 import com.github.midros.istheapp.utils.Consts.INSTAGRAM_PACK_NAME
@@ -43,7 +44,11 @@ class NotificationService : NotificationListenerService() {
                 val bundle = sbn.notification.extras
                 val text = bundle.getString(Notification.EXTRA_TEXT)
                 val title = bundle.getString(Notification.EXTRA_TITLE)
-                val icon = sbn.notification.largeIcon
+                val icon = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    sbn.notification.getLargeIcon().loadDrawable(this).toBitmap()
+                } else {
+                    sbn.notification.largeIcon
+                }
                 val nameImage = sbn.postTime
 
                 interactor.getNotificationExists(nameImage.toString()){
